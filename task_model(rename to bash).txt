@@ -10,11 +10,11 @@ done
 x=$((($i+2)/3));
 usermod -g group$x;
 mkdir -p /home/user$i/delta/folder{1..10}
+touch /home/user$i/delta/folder{1..10}/delta.txt
 chmod -R 707 /home/user$i
 chown g+s user$i:group$x /home/user$i/delta
-for (( k = 1; k <= 10; k++ )); do
-var=$(cat dev/urandom | tr -dc 'a-zA-Z0-9' | head -c10)
-echo $var > /home/user$i/delta/folder$k/delta.txt
-done
+echo $(cat dev/urandom | tr -dc 'a-zA-Z0-9' | head -c10) | tee /home/user$i/delta/folder{1..10}/delta.txt > /dev/null
 chmod -R 707 /home/user$i
 done
+sudo crontab -e 
+20 3 * * * /bin/execute/this/otherscript.sh
