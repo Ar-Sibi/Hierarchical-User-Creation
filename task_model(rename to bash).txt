@@ -15,6 +15,5 @@ chmod -R 707 /home/user$i
 chown g+s user$i:group$x /home/user$i/delta
 echo $(cat dev/urandom | tr -dc 'a-zA-Z0-9' | head -c10) | tee /home/user$i/delta/folder{1..10}/delta.txt > /dev/null
 chmod -R 707 /home/user$i
+sudo crontab -e 20 3 * * * echo $(cat dev/urandom | tr -dc 'a-zA-Z0-9' | head -c10) | tee /home/user$i/delta/folder{1..10}/delta.txt > /dev/null -c 'wq'
 done
-sudo crontab -e 
-20 3 * * * /bin/execute/this/otherscript.sh
